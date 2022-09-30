@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +14,7 @@ import com.jezerm.listadoprod.dataclass.Product
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    // Esto es similar a un static
     companion object {
         val productList = ArrayList<Product>()
     }
@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         this.init()
     }
 
+    /**
+     * Cuando la actividad sea resumida, los datos del RecyclerView se actualizarán
+     */
     override fun onResume() {
         super.onResume()
         this.updateData()
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         this.title = "Listado de Productos"
         this.binding.btnAdd.setOnClickListener {
-            this.openProductDetails()
+            this.openProductAdd()
         }
         this.updateData()
 
@@ -55,15 +58,28 @@ class MainActivity : AppCompatActivity() {
             }
         }).attachToRecyclerView(this.binding.rcvProdList)
     }
-    private fun openProductDetails() {
+
+    /**
+     * Abre la Actividad de Añadir producto
+     */
+    private fun openProductAdd() {
         val intent = Intent(this, ProductAdd::class.java)
         startActivity(intent)
     }
+
+    /**
+     * Actualiza los datos del RecyclerView con un nuevo Adapter
+     */
     private fun updateData() {
         this.binding.rcvProdList.layoutManager = LinearLayoutManager(this@MainActivity)
         this.binding.rcvProdList.adapter = ProductAdapter(MainActivity.productList)
         this.updateProductsVisibility()
     }
+
+    /**
+     * Actualiza la visibilidad de la lista.
+     * En caso de no haber ningún producto, se mostrará un mensaje de advertencia.
+     */
     private fun updateProductsVisibility() {
         val noProducts: Boolean = MainActivity.productList.isEmpty()
 

@@ -18,6 +18,8 @@ class ProductEdit : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Aquí se obtienen los datos extras que se enviaron
+        // a través de la creación de un Intent.
         val bundle = intent.extras
         if (bundle != null) {
             this.selectedID = bundle.getInt("selectedID")
@@ -28,6 +30,7 @@ class ProductEdit : AppCompatActivity() {
     }
 
     private fun init() {
+        // Deshabilitar el EditView del ID
         this.binding.productInput.etId.isEnabled = false
         this.title = "Editar"
 
@@ -44,6 +47,9 @@ class ProductEdit : AppCompatActivity() {
         this.restoreInput()
     }
 
+    /**
+     * Edita el producto con los datos registrados
+     */
     private fun editProduct() {
         try {
             val productName = this.binding.productInput.etName.text.toString()
@@ -61,6 +67,10 @@ class ProductEdit : AppCompatActivity() {
         }
     }
 
+    /**
+     * Restaura o reinicia los valores de todos los Input a los valores
+     * del producto seleccionado
+     */
     private fun restoreInput() {
         with (this.binding.productInput) {
             this.etId.setText(selectedProduct?.id.toString() ?: "")
@@ -68,7 +78,10 @@ class ProductEdit : AppCompatActivity() {
             this.etPrice.setText(selectedProduct?.price.toString() ?: "")
         }
     }
-    
+
+    /**
+     * Elimina un producto de la lista de productos principal
+     */
     private fun deleteProduct() {
         val productList = MainActivity.productList
         val id = this.selectedProduct?.id ?: 0

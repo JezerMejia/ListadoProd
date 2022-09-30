@@ -11,7 +11,6 @@ class ProductAdd() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val b = intent.extras
         this.binding = ActivityProductAddBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
         this.init()
@@ -27,12 +26,19 @@ class ProductAdd() : AppCompatActivity() {
         }
     }
 
+    /**
+     * Elimina todos los datos ingresados en los Input
+     */
     private fun clearInput() {
         this.binding.productInput.etId.setText("")
         this.binding.productInput.etName.setText("")
         this.binding.productInput.etPrice.setText("")
     }
 
+    /**
+     * Crea y añade un producto a la lista principal de Productos a partir
+     * de los datos ingresados en cada EditView
+     */
     private fun addProduct() {
         try {
             val productId = this.binding.productInput.etId.text.toString().toInt()

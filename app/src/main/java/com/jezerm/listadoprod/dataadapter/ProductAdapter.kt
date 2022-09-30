@@ -14,13 +14,13 @@ import com.jezerm.listadoprod.ProductEdit
 import com.jezerm.listadoprod.databinding.ListItemBinding
 import com.jezerm.listadoprod.dataclass.Product
 
+// Aquí se crea el ProductAdapter
 class ProductAdapter(var list: List<Product>) :
     RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
 
     inner class ProductHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("ClickableViewAccessibility")
         fun load(product: Product) {
             with(binding) {
                 this.tvProdCode.text = "#${product.id.toString()}"
@@ -33,6 +33,9 @@ class ProductAdapter(var list: List<Product>) :
             }
         }
 
+        /**
+         * Abre la vista de edición de un Producto con el id seleccionado
+         */
         private fun openProductEdit(context: Context, id: Int) {
             val intent = Intent(context, ProductEdit::class.java).apply {
                 this.putExtra("selectedID", id)
