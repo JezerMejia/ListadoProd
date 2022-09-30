@@ -1,18 +1,23 @@
 package com.jezerm.listadoprod
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jezerm.listadoprod.dataadapter.ProductAdapter
 import com.jezerm.listadoprod.databinding.ActivityMainBinding
 import com.jezerm.listadoprod.dataclass.Product
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var productList = ArrayList<Product>()
+
+    companion object {
+        val productList = ArrayList<Product>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,36 +26,48 @@ class MainActivity : AppCompatActivity() {
         this.init()
     }
 
+    override fun onResume() {
+        super.onResume()
+        this.updateData()
+    }
+
     private fun init() {
+        this.title = "Listado de Productos"
         this.binding.btnAdd.setOnClickListener {
-            this.addProduct()
+            this.openProductDetails()
         }
-        this.binding.btnClear.setOnClickListener {
-            this.clearInput()
-        }
+        this.updateData()
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val deletedProduct = MainActivity.productList.get(viewHolder.adapterPosition)
+                MainActivity.productList.removeAt(viewHolder.adapterPosition)
+                binding.rcvProdList.adapter?.notifyItemRemoved(viewHolder.adapterPosition)
+                updateProductsVisibility()
+            }
+        }).attachToRecyclerView(this.binding.rcvProdList)
     }
-
-    private fun clearInput() {
-        this.binding.etId.setText("")
-        this.binding.etName.setText("")
-        this.binding.etPrice.setText("")
+    private fun openProductDetails() {
+        val intent = Intent(this, ProductAdd::class.java)
+        startActivity(intent)
     }
-
-    private fun addProduct() {
-        try {
-            val productId = this.binding.etId.text.toString().toInt()
-            val productName = this.binding.etName.text.toString()
-            val productPrice = this.binding.etPrice.text.toString().toDouble()
-
-            val product = Product(productId, productName, productPrice)
-            this.productList.add(product)
-        } catch (ex: Exception) {
-            Toast.makeText(this, "Error: ${ex.toString()}", Toast.LENGTH_SHORT).show()
-            println(ex)
-            return
-        }
+    private fun updateData() {
         this.binding.rcvProdList.layoutManager = LinearLayoutManager(this@MainActivity)
-        this.binding.rcvProdList.adapter = ProductAdapter(this.productList)
-        this.clearInput()
+        this.binding.rcvProdList.adapter = ProductAdapter(MainActivity.productList)
+        this.updateProductsVisibility()
+    }
+    private fun updateProductsVisibility() {
+        val noProducts: Boolean = MainActivity.productList.isEmpty()
+
+        this.binding.noProductsMessage.visibility = if (noProducts) View.VISIBLE else View.INVISIBLE
+        this.binding.scrollView.visibility = if (noProducts) View.INVISIBLE else View.VISIBLE
     }
 }
