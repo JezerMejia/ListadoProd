@@ -16,6 +16,8 @@ Proyecto elaborado en Android Studio con Kotlin.
   <img src="./images/Screenshot_20220929_213328.png" width="300" alt="Vista de Editar, editando el producto de Agua" />
 </div>
 
+## Video (GIF)
+
 <div align="center">
   <img src="./images/View.gif" width="300" alt="Eliminando productos de la Vista principal con un deslizar hacia la derecha" />
 </div>
