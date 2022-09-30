@@ -1,21 +1,43 @@
 package com.jezerm.listadoprod.dataadapter
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.jezerm.listadoprod.ProductEdit
 import com.jezerm.listadoprod.databinding.ListItemBinding
 import com.jezerm.listadoprod.dataclass.Product
 
 class ProductAdapter(var list: List<Product>) :
     RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
-    inner class ProductHolder(val binding: ListItemBinding) :
+
+    inner class ProductHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        @SuppressLint("ClickableViewAccessibility")
         fun load(product: Product) {
             with(binding) {
-                this.tvProdCode.text = product.id.toString()
+                this.tvProdCode.text = "#${product.id.toString()}"
                 this.tvProdName.text = product.name
-                this.tvProdPrice.text = product.price.toString()
+                this.tvProdPrice.text = "C$ ${product.price.toString()}"
+
+                this.cardView.setOnClickListener {
+                    openProductEdit(binding.root.context, product.id)
+                }
             }
+        }
+
+        private fun openProductEdit(context: Context, id: Int) {
+            val intent = Intent(context, ProductEdit::class.java).apply {
+                this.putExtra("selectedID", id)
+            }
+            context.startActivity(intent)
         }
     }
 
