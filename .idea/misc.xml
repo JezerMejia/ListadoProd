@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/item_border.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/list_item.xml" value="0.34555880781533066" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20230041503906251" />
+        <entry key="app/src/main/res/layout/activity_product_add.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_product_edit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/product_input.xml" value="0.14583333333333334" />
       </map>
     </option>
   </component>
