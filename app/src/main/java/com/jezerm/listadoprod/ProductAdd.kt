@@ -30,9 +30,10 @@ class ProductAdd() : AppCompatActivity() {
      * Elimina todos los datos ingresados en los Input
      */
     private fun clearInput() {
-        this.binding.productInput.etId.setText("")
-        this.binding.productInput.etName.setText("")
-        this.binding.productInput.etPrice.setText("")
+        val productInput = this.binding.productInput
+        productInput.etId.editText?.setText("")
+        productInput.etName.editText?.setText("")
+        productInput.etPrice.editText?.setText("")
     }
 
     /**
@@ -41,9 +42,10 @@ class ProductAdd() : AppCompatActivity() {
      */
     private fun addProduct() {
         try {
-            val productId = this.binding.productInput.etId.text.toString().toInt()
-            val productName = this.binding.productInput.etName.text.toString()
-            val productPrice = this.binding.productInput.etPrice.text.toString().toDouble()
+            val productInput = this.binding.productInput
+            val productId = productInput.etId.editText?.text.toString().toInt()
+            val productName = productInput.etName.editText?.text.toString()
+            val productPrice = productInput.etPrice.editText?.text.toString().toDouble()
 
             val product = Product(productId, productName, productPrice)
             MainActivity.productList.add(product)

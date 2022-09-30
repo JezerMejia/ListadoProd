@@ -52,8 +52,8 @@ class ProductEdit : AppCompatActivity() {
      */
     private fun editProduct() {
         try {
-            val productName = this.binding.productInput.etName.text.toString()
-            val productPrice = this.binding.productInput.etPrice.text.toString().toDouble()
+            val productName = this.binding.productInput.etName.editText?.text.toString()
+            val productPrice = this.binding.productInput.etPrice.editText?.text.toString().toDouble()
 
             val product = this.selectedProduct ?: return
             product.name = productName
@@ -73,9 +73,9 @@ class ProductEdit : AppCompatActivity() {
      */
     private fun restoreInput() {
         with (this.binding.productInput) {
-            this.etId.setText(selectedProduct?.id.toString() ?: "")
-            this.etName.setText(selectedProduct?.name ?: "")
-            this.etPrice.setText(selectedProduct?.price.toString() ?: "")
+            this.etId.editText?.setText(selectedProduct?.id.toString() ?: "")
+            this.etName.editText?.setText(selectedProduct?.name ?: "")
+            this.etPrice.editText?.setText(selectedProduct?.price.toString() ?: "")
         }
     }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tvId"
@@ -12,19 +12,29 @@
         android:text="ID"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etId"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:inputType="numberSigned"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="ID del producto"
+        app:boxStrokeColor="?attr/colorAccent"
+        app:hintTextColor="?attr/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvId" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvName"
@@ -34,19 +44,29 @@
         android:text="Nombre del producto"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etId" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Nombre del producto"
+        app:boxStrokeColor="?attr/colorAccent"
+        app:hintTextColor="?attr/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvPrice"
@@ -56,18 +76,28 @@
         android:text="Precio (C$)"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etName" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etPrice"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:inputType="numberDecimal|numberSigned"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Precio del producto"
+        app:boxStrokeColor="?attr/colorAccent"
+        app:hintTextColor="?attr/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrice">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
