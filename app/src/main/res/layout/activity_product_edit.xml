@@ -33,36 +33,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/productInput">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Editar" />
+                android:text="Editar"
+                app:icon="@drawable/ic_baseline_edit_24"
+                app:iconGravity="textStart" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRestore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restaurar" />
+                android:text="Restaurar"
+                app:icon="@drawable/ic_baseline_settings_backup_restore_24"
+                app:iconGravity="textStart" />
         </LinearLayout>
 
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eliminar"
-            android:backgroundTint="?attr/colorError"
-            app:layout_constraintTop_toBottomOf="@id/buttonContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"
-            />
+            android:backgroundTint="?attr/colorError"
+            android:text="Eliminar"
+            app:icon="@drawable/ic_baseline_delete_forever_24"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonContainer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
